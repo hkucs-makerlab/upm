@@ -32,60 +32,66 @@
 // in milliseconds
 #define L298_DEFAULT_PWM_PERIOD 4
 
-namespace upm {
-  /**
-   * @brief L298 Dual H-Bridge Motor Driver
-   * @defgroup l298 libupm-l298
-   * @ingroup seeed sparkfun gpio pwm motor
-   */
+namespace upm
+{
+/**
+ * @brief L298 Dual H-Bridge Motor Driver
+ * @defgroup l298 libupm-l298
+ * @ingroup seeed sparkfun gpio pwm motor
+ */
 
-  /**
-   * @library l298
-   * @sensor l298
-   * @comname Dual H-bridge Motor Driver
-   * @type motor
-   * @man seeed sparkfun
-   * @web https://www.sparkfun.com/products/9670
-   * @con gpio pwm
-   *
-   * @brief API for the L298 Dual H-Bridge Motor Driver
-   *
-   * It was developed using the RobotBase Dual H-Bridge module.
-   *
-   * This module can support 2 DC motors, or one 2-phase stepper motor.
-   * It requires 3 pins per DC motor (or H-bridge), or 4 pins for
-   * the stepper motor (uses both H-bridges). 
-   *
-   * @image html l298.jpg
-   * <br><em>L298 Dual H-Bridge Motor Driver image provided by SparkFun* under
-   * <a href=https://creativecommons.org/licenses/by/2.0/>
-   * CC BY 2.0</a>.</em> 
-   *
-   * Example driving a DC motor
-   * @snippet l298.cxx Interesting
-   * Example driving a stepper motor
-   * @snippet l298-stepper.cxx Interesting
-   */
-  class L298 {
+/**
+ * @library l298
+ * @sensor l298
+ * @comname Dual H-bridge Motor Driver
+ * @type motor
+ * @man seeed sparkfun
+ * @web https://www.sparkfun.com/products/9670
+ * @con gpio pwm
+ *
+ * @brief API for the L298 Dual H-Bridge Motor Driver
+ *
+ * It was developed using the RobotBase Dual H-Bridge module.
+ *
+ * This module can support 2 DC motors, or one 2-phase stepper motor.
+ * It requires 3 pins per DC motor (or H-bridge), or 4 pins for
+ * the stepper motor (uses both H-bridges).
+ *
+ * @image html l298.jpg
+ * <br><em>L298 Dual H-Bridge Motor Driver image provided by SparkFun* under
+ * <a href=https://creativecommons.org/licenses/by/2.0/>
+ * CC BY 2.0</a>.</em>
+ *
+ * Example driving a DC motor
+ * @snippet l298.cxx Interesting
+ * Example driving a stepper motor
+ * @snippet l298-stepper.cxx Interesting
+ */
+class L298
+{
   public:
-
     /**
      * Enum to specify the direction of a motor
      */
-    typedef enum {
-      DIR_NONE = 0x00,
-      DIR_CW   = 0x01,
-      DIR_CCW  = 0x02
-    } L298_DIRECTION_T;
+    typedef enum { DIR_NONE = 0x00, DIR_CW = 0x01, DIR_CCW = 0x02 } L298_DIRECTION_T;
 
     /**
-     * L298 constructor for DC motor(s) connected.  
+     * L298 constructor for DC motor(s) connected.
      *
      * @param pwm Digital pin to use for a DC motor - must be PWM-capable
      * @param dir1 Digital pin to use for motor direction pin 1
      * @param dir2 Digital pin to use for motor direction pin 2
      */
     L298(int pwm, int dir1, int dir2);
+
+    /**
+     * L298 constructor for DC motor(s) connected.
+     *
+     * @param pwm PWM context
+     * @param dir1 Digital pin to use for motor direction pin 1
+     * @param dir2 Digital pin to use for motor direction pin 2
+     */
+    L298(mraa_pwm_context pwm, int dir1, int dir2);
 
     /**
      * L298 constructor for a 4-wire stepper motor
@@ -156,6 +162,9 @@ namespace upm {
     void stepperSteps(unsigned int steps);
 
   private:
+    void init(mraa_pwm_context pwm, int dir1, int dir2);
+
+  private:
     // DC motor mode enabled
     bool m_motor;
     // stepper mode enabled
@@ -188,7 +197,5 @@ namespace upm {
 
     // step direction: - 1 = forward, -1 = backward
     int m_stepDirection;
-  };
-}
-
-
+};
+} // namespace upm
