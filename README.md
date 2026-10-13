@@ -2,7 +2,7 @@
   <img src="https://github.com/eclipse/upm/blob/master/docs/icons/upm_logo.png" height="150px" width="auto" algt="UPM Logo"/>
 </p>
 
-Eclipse UPM Sensor and Actuator Repository
+Eclipse UPM™ Sensor and Actuator Repository
 ==============
 
 The Eclipse UPM repository provides software drivers for a wide variety of
@@ -75,7 +75,7 @@ Supported [sensor list](http://iotdk.intel.com/docs/master/upm/modules.html) fro
 ### IDE Support and More
 
 The UPM project includes support for multiple industrial-grade sensors, actuators, radios,
-protocols and standards in use today. It is also highly integrated with the Eclipse IDE 
+protocols and standards in use today. It is also highly integrated with the Eclipse IDE
 through the help of the Foundation's partners.
 
 ### Installing UPM
@@ -108,6 +108,10 @@ and the intel-iot-devkit repositories in general, take a look at our extensive
 
 API Documentation
 ==============
+
+**UNDER CONSTRUCTION:** we are working on re-hosting our documentation, so below
+links don't work. Please use the sources and Markdown files under [docs](docs/)
+in the meanwhile.
 
 <a href="http://iotdk.intel.com/docs/master/upm"><img src="docs/icons/c++.png"/></a>
 <a href="http://iotdk.intel.com/docs/master/upm/java"><img src="docs/icons/java.png"/></a>
